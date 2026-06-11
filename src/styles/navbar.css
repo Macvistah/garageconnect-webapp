@@ -1,0 +1,184 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  border-bottom: 0.5px solid #1e1e1e;
+  background: #0a0a0a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo-icon {
+  width: 32px;
+  height: 32px;
+  background: #E87820;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.navbar-logo-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Desktop nav links — center */
+.navbar-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.navbar-link {
+  font-size: 13px;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+
+.navbar-link:hover { color: #fff; }
+
+/* Desktop CTA — right */
+.navbar-cta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Hamburger — hidden on desktop */
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #aaa;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  transform-origin: center;
+}
+
+.open-1 { transform: translateY(6.5px) rotate(45deg); background: #E87820; }
+.open-2 { opacity: 0; transform: scaleX(0); }
+.open-3 { transform: translateY(-6.5px) rotate(-45deg); background: #E87820; }
+
+/* Mobile dropdown */
+.navbar-mobile {
+  display: none;
+}
+
+/* ── RESPONSIVE ── */
+
+/* Below 860px: hide nav links, show hamburger + keep CTA visible */
+@media (max-width: 860px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  /* Hide the center links */
+  .navbar-links {
+    display: none;
+  }
+
+  /* Show hamburger */
+  .navbar-hamburger {
+    display: flex;
+  }
+
+  /* CTA stays visible but stacks vertically */
+  .navbar-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+  }
+
+  .navbar-cta .btn-ghost,
+  .navbar-cta .btn-orange {
+    padding: 7px 14px;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Mobile dropdown visible when open */
+  .navbar-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 0.5px solid #1e1e1e;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0a0a0a;
+    padding: 0 20px;
+    z-index: 99;
+  }
+
+  .navbar-mobile.open {
+    max-height: 400px;
+    padding: 12px 20px 20px;
+    border-bottom: 0.5px solid #1e1e1e;
+  }
+
+  .navbar-mobile-link {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 0.5px solid #141414;
+    transition: color 0.15s;
+    display: block;
+  }
+
+  .navbar-mobile-link:last-of-type {
+    border-bottom: none;
+  }
+
+  .navbar-mobile-link:hover { color: #fff; }
+
+  .navbar-mobile-cta {
+    display: none;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .navbar-logo-text {
+    font-size: 14px;
+  }
+}

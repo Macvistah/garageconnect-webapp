@@ -1,0 +1,524 @@
+/* Register.css - No scroll version */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.register-page {
+  height: 100vh;
+  width: 100vw;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.register-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+.register-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: #E87820;
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.register-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: #ff4500;
+  bottom: -80px;
+  left: -80px;
+  animation-delay: 4s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15) translate(10px, -10px); }
+}
+
+/* Card */
+.register-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  background: rgba(17, 17, 17, 0.9);
+  border: 1px solid rgba(232, 120, 32, 0.2);
+  border-radius: 28px;
+  padding: 24px 32px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(232, 120, 32, 0.1);
+  transition: all 0.3s ease;
+}
+
+.register-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E87820, transparent);
+}
+
+/* Logo */
+.register-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.register-logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #E87820, #ff9a4a);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 0 14px rgba(232, 120, 32, 0.3);
+}
+
+.register-logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+/* Progress bar */
+.progress-wrap {
+  margin-bottom: 20px;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 8px;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.progress-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid #2a2a2a;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #444;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.progress-dot.active {
+  border-color: #E87820;
+  background: #E87820;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(232, 120, 32, 0.4);
+}
+
+.progress-dot.done {
+  border-color: #E87820;
+  background: linear-gradient(135deg, #E87820, #cf6a15);
+  color: #fff;
+}
+
+.progress-label {
+  font-size: 9px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.progress-label.active { color: #E87820; }
+.progress-label.done { color: #666; }
+
+.progress-line {
+  width: 50px;
+  height: 1px;
+  background: #1e1e1e;
+  margin: 0 4px;
+  margin-bottom: 18px;
+  transition: background 0.3s;
+}
+
+.progress-line.done { background: #E87820; }
+
+/* Step titles */
+.step-title {
+  font-size: 22px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #fff, #a0a0a0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.step-sub {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* Role cards — Step 1 */
+.role-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.role-card {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.role-card:hover {
+  border-color: rgba(232, 120, 32, 0.5);
+  background: rgba(232, 120, 32, 0.05);
+}
+
+.role-card.selected {
+  border-color: #E87820;
+  background: rgba(232, 120, 32, 0.08);
+  box-shadow: 0 0 12px rgba(232, 120, 32, 0.12);
+}
+
+.role-card-icon {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.role-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.role-card-desc {
+  font-size: 10px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Fields — Step 2 */
+.field {
+  margin-bottom: 10px;
+}
+
+.field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  color: #888;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 13px;
+  color: #555;
+  pointer-events: none;
+}
+
+.input-wrap input,
+.input-wrap select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 9px 12px 9px 36px;
+  font-size: 12px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  appearance: none;
+}
+
+.input-wrap input:focus,
+.input-wrap select:focus {
+  border-color: #E87820;
+  box-shadow: 0 0 0 3px rgba(232, 120, 32, 0.1);
+}
+
+.input-wrap input::placeholder { color: #444; }
+
+.field-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+/* Error */
+.register-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #ef4444;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Navigation buttons */
+.step-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn-back {
+  padding: 9px 18px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-back:hover { border-color: #E87820; color: #fff; }
+
+.btn-next {
+  flex: 1;
+  padding: 9px;
+  background: linear-gradient(135deg, #E87820, #c45e10);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  box-shadow: 0 0 16px rgba(232, 120, 32, 0.25);
+}
+
+.btn-next:hover {
+  box-shadow: 0 0 24px rgba(232, 120, 32, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Step 3 — success */
+.success-wrap {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.success-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #E87820, #c45e10);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 24px rgba(232, 120, 32, 0.4);
+  animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-title {
+  font-size: 20px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #fff, #a0a0a0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 6px;
+}
+
+.success-sub {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.success-role-badge {
+  display: inline-block;
+  background: rgba(232, 120, 32, 0.15);
+  border: 1px solid rgba(232, 120, 32, 0.3);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: #E87820;
+  margin-bottom: 18px;
+}
+
+/* Login link */
+.login-row {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 11px;
+  color: #666;
+}
+
+.login-row a { 
+  color: #E87820; 
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-row a:hover {
+  color: #ff9a4a;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Responsive for shorter screens */
+@media (max-height: 680px) {
+  .register-card {
+    padding: 18px 28px;
+  }
+  
+  .register-logo {
+    margin-bottom: 14px;
+  }
+  
+  .register-logo-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .register-logo-text {
+    font-size: 18px;
+  }
+  
+  .progress-wrap {
+    margin-bottom: 14px;
+  }
+  
+  .step-title {
+    font-size: 20px;
+  }
+  
+  .step-sub {
+    margin-bottom: 12px;
+  }
+  
+  .role-cards {
+    margin-bottom: 12px;
+  }
+  
+  .role-card {
+    padding: 8px;
+  }
+  
+  .role-card-icon {
+    font-size: 18px;
+  }
+  
+  .field {
+    margin-bottom: 8px;
+  }
+  
+  .step-btns {
+    margin-top: 8px;
+  }
+  
+  .success-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .success-sub {
+    margin-bottom: 14px;
+  }
+  
+  .success-role-badge {
+    margin-bottom: 12px;
+  }
+}
+
+/* Hide scrollbar */
+body {
+  overflow: hidden;
+}
+
+.register-page {
+  overflow: hidden;
+}

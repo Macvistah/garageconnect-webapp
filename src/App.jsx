@@ -1,0 +1,19 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Landing from './pages/public/Landing';
+import Login from './pages/public/Login';
+import Register from './pages/public/Register';
+import GarageDashboard from './pages/garage/GarageDashboard';
+import './styles/globals.css';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"                   element={<Landing />} />
+        <Route path="/login"              element={<Login />} />
+        <Route path="/register"           element={<Register />} />
+        <Route path="/garage/dashboard"   element={<GarageDashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
