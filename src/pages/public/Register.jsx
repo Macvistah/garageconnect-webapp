@@ -44,7 +44,9 @@ export default function Register() {
   const [form, setForm] = useState({
     full_name: '', email: '', phone: '',
     password: '', confirm_password: '',
+
     // role-specific fields filled dynamically
+    
     garage_name: '', address: '',
     car_model: '', number_plate: '',
     truck_plate: '', area: '',

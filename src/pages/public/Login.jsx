@@ -1,4 +1,3 @@
-// Login.jsx
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
@@ -7,36 +6,30 @@ import '../../styles/Login.css';
 
 export default function Login() {
   const navigate = useNavigate();
-
   const [role, setRole] = useState('garage_owner');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
   const { setAuth } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
     try {
-      const response = await api.post('auth/login', { email, password });
+      const response = await api.post('/auth/login', { email, password });
       const { access_token, role: userRole } = response.data;
-
       localStorage.setItem('token', access_token);
       localStorage.setItem('role', userRole);
-
+      setAuth({ token: access_token, role: userRole });
       if (userRole === 'garage_owner') navigate('/garage/dashboard');
-      else if (userRole === 'customer') navigate('/customer/dashboard');
+      else if (userRole === 'car_owner') navigate('/customer/dashboard');
       else if (userRole === 'mechanic') navigate('/mechanic/dashboard');
       else if (userRole === 'supplier') navigate('/supplier/dashboard');
       else if (userRole === 'admin') navigate('/admin/dashboard');
       else navigate('/');
-
-      setAuth({ token: access_token, role: userRole });
     } catch (err) {
       setError(err.response?.data?.detail || 'Login failed. Please try again');
     } finally {
@@ -44,19 +37,30 @@ export default function Login() {
     }
   };
 
-  return (
-  <div className="login-page">
-    <div className="login-container">
-      {/* Animated background elements */}
-      <div className="bg-glow"></div>
-      
-      
-      <div className="login-card">
+  const devBypass = (targetRole) => {
+    localStorage.setItem('token', 'dev-token');
+    localStorage.setItem('role', targetRole);
+    localStorage.setItem('name', 'Mac Kelvin');
+    setAuth({ token: 'dev-token', role: targetRole });
+    const routes = {
+      garage_owner: '/garage/dashboard',
+      car_owner: '/customer/dashboard',
+      mechanic: '/mechanic/dashboard',
+      supplier: '/supplier/dashboard',
+      admin: '/admin/dashboard',
+    };
+    navigate(routes[targetRole] || '/');
+  };
 
-          {/* Logo */}
+  return (
+    <div className="login-page">
+      <div className="login-container">
+        <div className="bg-glow"></div>
+        <div className="login-card">
+
           <Link to="/" className="login-logo">
             <div className="logo-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -70,7 +74,6 @@ export default function Login() {
             <p>Sign in to access your dashboard</p>
           </div>
 
-          {/* Role selection */}
           <div className="role-toggle">
             {['garage_owner', 'customer', 'mechanic', 'supplier', 'admin'].map((val) => (
               <button
@@ -79,7 +82,7 @@ export default function Login() {
                 onClick={() => setRole(val)}
                 type="button"
               >
-                {val === 'garage_owner' ? 'Garage Owner' :
+                {val === 'garage_owner' ? 'Garage' :
                  val === 'customer' ? 'Customer' :
                  val === 'mechanic' ? 'Mechanic' :
                  val === 'supplier' ? 'Supplier' : 'Admin'}
@@ -87,16 +90,14 @@ export default function Login() {
             ))}
           </div>
 
-          {/* Error message */}
           {error && <div className="login-error">{error}</div>}
 
-          {/* Form */}
           <form onSubmit={handleLogin}>
             <div className="field">
               <label>Email Address</label>
               <div className="input-wrap">
                 <span className="input-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -118,7 +119,7 @@ export default function Login() {
               </div>
               <div className="input-wrap">
                 <span className="input-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M12 3C8.5 3 5 5.5 5 9V12C3.5 12 2 13.5 2 15V18C2 19.5 3.5 21 5 21H19C20.5 21 22 19.5 22 18V15C22 13.5 20.5 12 19 12V9C19 5.5 15.5 3 12 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M8 12V9C8 6.8 9.8 5 12 5C14.2 5 16 6.8 16 9V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -130,11 +131,7 @@ export default function Login() {
                   onChange={e => setPassword(e.target.value)}
                   required
                 />
-                <button
-                  type="button"
-                  className="eye-btn"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
+                <button type="button" className="eye-btn" onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? (
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                       <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -143,7 +140,7 @@ export default function Login() {
                   ) : (
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
                     </svg>
                   )}
                 </button>
@@ -153,12 +150,33 @@ export default function Login() {
             <button type="submit" className="submit-btn" disabled={loading}>
               {loading ? 'Signing in...' : 'Sign In'}
               {!loading && (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               )}
             </button>
           </form>
+
+          <div style={{ marginTop: 20, padding: '14px', background: 'rgba(232,120,32,0.06)', border: '0.5px dashed rgba(232,120,32,0.3)', borderRadius: 8 }}>
+            <div style={{ fontSize: 11, color: '#E87820', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              Dev mode — skip login
+            </div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {['garage_owner', 'mechanic', 'customer', 'supplier', 'admin'].map(r => (
+                <button
+                  key={r}
+                  onClick={() => devBypass(r)}
+                  style={{
+                    padding: '5px 12px', fontSize: 12, cursor: 'pointer',
+                    background: 'transparent', border: '0.5px solid rgba(232,120,32,0.4)',
+                    borderRadius: 6, color: '#E87820', fontFamily: 'inherit',
+                  }}
+                >
+                  {r.replace('_', ' ')}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <div className="divider">
             <div className="divider-line" />
@@ -180,6 +198,7 @@ export default function Login() {
             Don't have an account?{' '}
             <Link to="/register">Create one free</Link>
           </div>
+
         </div>
       </div>
     </div>
