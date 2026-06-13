@@ -24,12 +24,7 @@ export default function Login() {
       localStorage.setItem('token', access_token);
       localStorage.setItem('role', userRole);
       setAuth({ token: access_token, role: userRole });
-      if (userRole === 'garage_owner') navigate('/garage/dashboard');
-      else if (userRole === 'car_owner') navigate('/customer/dashboard');
-      else if (userRole === 'mechanic') navigate('/mechanic/dashboard');
-      else if (userRole === 'supplier') navigate('/supplier/dashboard');
-      else if (userRole === 'admin') navigate('/admin/dashboard');
-      else navigate('/');
+      redirect(userRole, navigate);
     } catch (err) {
       setError(err.response?.data?.detail || 'Login failed. Please try again');
     } finally {
@@ -37,19 +32,39 @@ export default function Login() {
     }
   };
 
+  const redirect = (userRole, nav) => {
+    const routes = {
+      garage_owner: '/garage/dashboard',
+      car_owner:    '/customer/dashboard',
+      mechanic:     '/mechanic/dashboard',
+      supplier:     '/supplier/dashboard',
+      admin:        '/admin/dashboard',
+    };
+    nav(routes[userRole] || '/');
+  };
+
   const devBypass = (targetRole) => {
     localStorage.setItem('token', 'dev-token');
     localStorage.setItem('role', targetRole);
     localStorage.setItem('name', 'Mac Kelvin');
     setAuth({ token: 'dev-token', role: targetRole });
-    const routes = {
-      garage_owner: '/garage/dashboard',
-      car_owner: '/customer/dashboard',
-      mechanic: '/mechanic/dashboard',
-      supplier: '/supplier/dashboard',
-      admin: '/admin/dashboard',
-    };
-    navigate(routes[targetRole] || '/');
+    redirect(targetRole, navigate);
+  };
+
+  const DEV_ROLES = [
+    { key: 'garage_owner', label: 'Garage owner' },
+    { key: 'car_owner',    label: 'Car owner'    },
+    { key: 'mechanic',     label: 'Mechanic'     },
+    { key: 'supplier',     label: 'Supplier'     },
+    { key: 'admin',        label: 'Admin'        },
+  ];
+
+  const ROLE_LABELS = {
+    garage_owner: 'Garage',
+    car_owner:    'Customer',
+    mechanic:     'Mechanic',
+    supplier:     'Supplier',
+    admin:        'Admin',
   };
 
   return (
@@ -75,17 +90,14 @@ export default function Login() {
           </div>
 
           <div className="role-toggle">
-            {['garage_owner', 'customer', 'mechanic', 'supplier', 'admin'].map((val) => (
+            {Object.entries(ROLE_LABELS).map(([val, label]) => (
               <button
                 key={val}
                 className={`role-btn ${role === val ? 'active' : ''}`}
                 onClick={() => setRole(val)}
                 type="button"
               >
-                {val === 'garage_owner' ? 'Garage' :
-                 val === 'customer' ? 'Customer' :
-                 val === 'mechanic' ? 'Mechanic' :
-                 val === 'supplier' ? 'Supplier' : 'Admin'}
+                {label}
               </button>
             ))}
           </div>
@@ -157,22 +169,29 @@ export default function Login() {
             </button>
           </form>
 
-          <div style={{ marginTop: 20, padding: '14px', background: 'rgba(232,120,32,0.06)', border: '0.5px dashed rgba(232,120,32,0.3)', borderRadius: 8 }}>
+          {/* DEV MODE — remove before production */}
+          <div style={{
+            marginTop: 20, padding: 14,
+            background: 'rgba(232,120,32,0.06)',
+            border: '0.5px dashed rgba(232,120,32,0.3)',
+            borderRadius: 8,
+          }}>
             <div style={{ fontSize: 11, color: '#E87820', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Dev mode — skip login
             </div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              {['garage_owner', 'mechanic', 'customer', 'supplier', 'admin'].map(r => (
+              {DEV_ROLES.map(({ key, label }) => (
                 <button
-                  key={r}
-                  onClick={() => devBypass(r)}
+                  key={key}
+                  onClick={() => devBypass(key)}
                   style={{
                     padding: '5px 12px', fontSize: 12, cursor: 'pointer',
-                    background: 'transparent', border: '0.5px solid rgba(232,120,32,0.4)',
+                    background: 'transparent',
+                    border: '0.5px solid rgba(232,120,32,0.4)',
                     borderRadius: 6, color: '#E87820', fontFamily: 'inherit',
                   }}
                 >
-                  {r.replace('_', ' ')}
+                  {label}
                 </button>
               ))}
             </div>

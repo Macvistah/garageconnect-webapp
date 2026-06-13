@@ -3,6 +3,7 @@ import Landing from './pages/public/Landing';
 import Login from './pages/public/Login';
 import Register from './pages/public/Register';
 import GarageDashboard from './pages/garage/GarageDashboard';
+import CustomerDashboard from './pages/customer/CustomerDashboard';
 import './styles/globals.css';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/login"              element={<Login />} />
         <Route path="/register"           element={<Register />} />
         <Route path="/garage/dashboard"   element={<GarageDashboard />} />
+        <Route path="/customer/dashboard" element={<CustomerDashboard />} />
       </Routes>
     </BrowserRouter>
   );
