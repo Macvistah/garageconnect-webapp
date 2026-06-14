@@ -4,6 +4,7 @@ import Login from './pages/public/Login';
 import Register from './pages/public/Register';
 import GarageDashboard from './pages/garage/GarageDashboard';
 import CustomerDashboard from './pages/customer/CustomerDashboard';
+import MechanicDashboard from './pages/mechanic/MechanicDashboard';
 import './styles/globals.css';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/register"           element={<Register />} />
         <Route path="/garage/dashboard"   element={<GarageDashboard />} />
         <Route path="/customer/dashboard" element={<CustomerDashboard />} />
+        <Route path="/mechanic/dashboard" element={<MechanicDashboard />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,1085 @@
+/* ============================================
+   MECHANIC DASHBOARD SPECIFIC STYLES
+   These styles ONLY apply to MechanicDashboard component
+   ============================================ */
+
+/* ── Layout ── */
+.mechanic-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* ── Sidebar ── */
+.mechanic-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: #0f0f0f;
+  border-right: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.mechanic-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+  border-bottom: 1px solid #1a1a1a;
+  text-decoration: none;
+}
+
+.mechanic-sidebar-logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #E87820, #cf6a15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mechanic-sidebar-logo-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+.mechanic-sidebar-section {
+  padding: 24px 16px 8px;
+}
+
+.mechanic-sidebar-section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #3a3a3a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 8px;
+  margin-bottom: 12px;
+}
+
+.mechanic-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8a8a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.mechanic-sidebar-link:hover {
+  background: #181818;
+  color: #c0c0c0;
+}
+
+.mechanic-sidebar-link.active {
+  background: rgba(232, 120, 32, 0.12);
+  color: #E87820;
+  border-left: 3px solid #E87820;
+}
+
+.mechanic-sidebar-link-icon {
+  font-size: 18px;
+  width: 24px;
+}
+
+.mechanic-sidebar-bottom {
+  margin-top: auto;
+  padding: 20px 16px;
+  border-top: 1px solid #1a1a1a;
+}
+
+.mechanic-sidebar-profile {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.mechanic-sidebar-avatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #E87820, #cf6a15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 auto 10px;
+}
+
+.mechanic-sidebar-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.mechanic-sidebar-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.mechanic-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.mechanic-status-dot.available {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+}
+
+.mechanic-status-dot.busy {
+  background: #ef4444;
+}
+
+/* ── Main Content Area ── */
+.mechanic-main {
+  margin-left: 260px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Topbar / Header ── */
+.mechanic-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid #1a1a1a;
+  background: #0a0a0a;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.mechanic-topbar-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.mechanic-topbar-sub {
+  font-size: 12px;
+  color: #5a5a5a;
+  margin-top: 4px;
+}
+
+.mechanic-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mechanic-availability-toggle {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #2a2a2a;
+  background: #111;
+  color: #aaa;
+}
+
+.mechanic-availability-toggle.active {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.mechanic-topbar-avatar {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #E87820, #cf6a15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.mechanic-topbar-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* ── Content Container ── */
+.mechanic-content {
+  padding: 28px 32px;
+  flex: 1;
+}
+
+/* ── Stats Cards Grid ── */
+.mechanic-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.mechanic-stat-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.mechanic-stat-card:hover {
+  border-color: #2a2a2a;
+  background: #151515;
+}
+
+.mechanic-stat-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.mechanic-stat-card-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6a6a6a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mechanic-stat-card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.mechanic-stat-card-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+/* ── Quick Actions ── */
+.mechanic-quick-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.mechanic-quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #252525;
+  background: #111;
+  color: #aaa;
+}
+
+.mechanic-quick-action-btn:hover {
+  border-color: #E87820;
+  color: #E87820;
+  background: rgba(232, 120, 32, 0.05);
+}
+
+.mechanic-quick-action-btn.primary {
+  background: linear-gradient(135deg, #E87820, #cf6a15);
+  border: none;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(232, 120, 32, 0.3);
+}
+
+.mechanic-quick-action-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(232, 120, 32, 0.4);
+}
+
+/* ── Section Headers ── */
+.mechanic-section {
+  margin-bottom: 32px;
+}
+
+.mechanic-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.mechanic-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.mechanic-section-sub {
+  font-size: 13px;
+  color: #6a6a6a;
+  margin-top: 4px;
+}
+
+.mechanic-view-all {
+  font-size: 12px;
+  color: #E87820;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.mechanic-view-all:hover {
+  opacity: 0.8;
+}
+
+/* ── Jobs Grid (Available Jobs) ── */
+.mechanic-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.mechanic-job-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  padding: 18px;
+  transition: all 0.2s;
+}
+
+.mechanic-job-card:hover {
+  border-color: #E87820;
+  background: #151515;
+}
+
+.mechanic-job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.mechanic-job-id {
+  font-size: 12px;
+  color: #6a6a6a;
+}
+
+.mechanic-job-status {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.mechanic-job-status.pending {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+}
+
+.mechanic-job-vehicle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.mechanic-job-description {
+  font-size: 13px;
+  color: #8a8a8a;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.mechanic-job-footer {
+  display: flex;
+  gap: 10px;
+}
+
+.mechanic-accept-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(232, 120, 32, 0.12);
+  border: 1px solid rgba(232, 120, 32, 0.3);
+  color: #E87820;
+  transition: all 0.2s;
+}
+
+.mechanic-accept-btn:hover {
+  background: rgba(232, 120, 32, 0.2);
+}
+
+/* ── Jobs List (My Jobs) ── */
+.mechanic-jobs-container {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.mechanic-jobs-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.mechanic-job-item {
+  padding: 20px;
+  border-bottom: 1px solid #1a1a1a;
+  transition: background 0.2s;
+}
+
+.mechanic-job-item:last-child {
+  border-bottom: none;
+}
+
+.mechanic-job-item:hover {
+  background: #151515;
+}
+
+.mechanic-job-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mechanic-job-item-header > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mechanic-job-vehicle-sm {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.mechanic-job-item-body {
+  margin-bottom: 16px;
+}
+
+.mechanic-job-description-full {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.mechanic-job-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: #6a6a6a;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.mechanic-job-parts {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #1a1a1a;
+}
+
+.mechanic-parts-label {
+  font-size: 11px;
+  color: #6a6a6a;
+}
+
+.mechanic-part-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  background: rgba(232, 120, 32, 0.1);
+  border: 1px solid rgba(232, 120, 32, 0.2);
+  border-radius: 14px;
+  color: #E87820;
+}
+
+.mechanic-job-item-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mechanic-action-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #252525;
+  background: transparent;
+  color: #aaa;
+}
+
+.mechanic-action-btn:hover {
+  border-color: #3a3a3a;
+  color: #fff;
+}
+
+.mechanic-action-btn.start {
+  border-color: rgba(232, 120, 32, 0.3);
+  color: #E87820;
+}
+
+.mechanic-action-btn.start:hover {
+  background: rgba(232, 120, 32, 0.1);
+}
+
+.mechanic-action-btn.parts {
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+}
+
+.mechanic-action-btn.parts:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.mechanic-action-btn.complete {
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.mechanic-action-btn.complete:hover {
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.mechanic-action-btn.accept {
+  border-color: rgba(232, 120, 32, 0.3);
+  color: #E87820;
+}
+
+.mechanic-action-btn.small {
+  padding: 4px 12px;
+  font-size: 11px;
+}
+
+.mechanic-completed-badge {
+  font-size: 12px;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+/* ── Status Badges ── */
+.mechanic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mechanic-badge-pending {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+  border: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.mechanic-badge-accepted {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.mechanic-badge-in_progress {
+  background: rgba(232, 120, 32, 0.12);
+  color: #E87820;
+  border: 1px solid rgba(232, 120, 32, 0.2);
+}
+
+.mechanic-badge-completed {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.mechanic-badge-cancelled {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ── Parts Requests ── */
+.mechanic-parts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mechanic-part-request-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.mechanic-part-request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1a1a1a;
+  font-size: 13px;
+  color: #fff;
+}
+
+.mechanic-part-status {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.mechanic-part-status.ordered {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+}
+
+.mechanic-part-status.received {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
+.mechanic-part-status.pending {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+}
+
+.mechanic-part-request-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mechanic-requested-part {
+  font-size: 12px;
+  padding: 4px 12px;
+  background: #1a1a1a;
+  border-radius: 16px;
+  color: #aaa;
+}
+
+.mechanic-part-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ── Empty State ── */
+.mechanic-empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.mechanic-empty-state.small {
+  padding: 40px 20px;
+}
+
+.mechanic-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.mechanic-empty-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.mechanic-empty-sub {
+  font-size: 13px;
+  color: #6a6a6a;
+}
+
+/* ── Performance Section ── */
+.mechanic-performance {
+  margin-top: 0;
+}
+
+.mechanic-performance-chart {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+/* ── Settings Panel ── */
+.mechanic-settings-panel {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  padding: 28px;
+}
+
+.mechanic-settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #1a1a1a;
+  font-size: 14px;
+}
+
+.mechanic-settings-row:last-child {
+  border-bottom: none;
+}
+
+.mechanic-settings-row span:first-child {
+  color: #6a6a6a;
+  font-weight: 500;
+}
+
+.mechanic-settings-row span:last-child {
+  color: #fff;
+}
+
+.mechanic-settings-row .available {
+  color: #22c55e;
+}
+
+.mechanic-settings-row .busy {
+  color: #ef4444;
+}
+
+/* ── Loading State ── */
+.mechanic-loading {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6a6a6a;
+  font-size: 14px;
+}
+
+/* ── MODALS ── */
+.mechanic-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.mechanic-modal {
+  background: #0f0f0f;
+  border: 1px solid #252525;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow: auto;
+}
+
+.mechanic-modal-header {
+  padding: 20px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid #1a1a1a;
+  color: #fff;
+}
+
+.mechanic-modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mechanic-modal-body label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8a8a8a;
+  margin-bottom: 4px;
+}
+
+.mechanic-job-info {
+  background: #0a0a0a;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #aaa;
+  border-left: 3px solid #E87820;
+}
+
+.mechanic-modal-textarea {
+  background: #0a0a0a;
+  border: 1px solid #252525;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.mechanic-modal-textarea:focus {
+  outline: none;
+  border-color: #E87820;
+}
+
+.mechanic-image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mechanic-upload-btn {
+  background: none;
+  border: 1px dashed #3a3a3a;
+  border-radius: 10px;
+  padding: 10px;
+  color: #E87820;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.mechanic-upload-btn:hover {
+  border-color: #E87820;
+  background: rgba(232, 120, 32, 0.05);
+}
+
+.mechanic-image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mechanic-image-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1a1a1a;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.mechanic-image-tag button {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.mechanic-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.mechanic-modal-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mechanic-modal-btn.cancel {
+  background: none;
+  border: 1px solid #2a2a2a;
+  color: #aaa;
+}
+
+.mechanic-modal-btn.cancel:hover {
+  border-color: #3a3a3a;
+  color: #fff;
+}
+
+.mechanic-modal-btn.save {
+  background: linear-gradient(135deg, #E87820, #cf6a15);
+  border: none;
+  color: #fff;
+}
+
+.mechanic-modal-btn.save:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(232, 120, 32, 0.3);
+}
+
+/* ── Sidebar Toggle Button (Mobile) ── */
+.mechanic-sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.mechanic-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 90;
+}
+
+/* ── RESPONSIVE DESIGN ── */
+@media (max-width: 860px) {
+  .mechanic-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .mechanic-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mechanic-main {
+    margin-left: 0;
+  }
+
+  .mechanic-sidebar-toggle {
+    display: block;
+  }
+
+  .mechanic-content {
+    padding: 20px 16px;
+  }
+
+  .mechanic-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .mechanic-jobs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mechanic-job-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .mechanic-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mechanic-quick-actions {
+    flex-direction: column;
+  }
+
+  .mechanic-quick-action-btn {
+    justify-content: center;
+  }
+
+  .mechanic-topbar {
+    padding: 12px 16px;
+  }
+
+  .mechanic-topbar-title {
+    font-size: 16px;
+  }
+
+  .mechanic-job-meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mechanic-job-item-actions {
+    flex-direction: column;
+  }
+
+  .mechanic-action-btn {
+    text-align: center;
+  }
+
+  .mechanic-modal {
+    width: 95%;
+    margin: 10px;
+  }
+}
+
+/* ── Scrollbar Styling ── */
+.mechanic-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mechanic-content::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+.mechanic-content::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+
+.mechanic-content::-webkit-scrollbar-thumb:hover {
+  background: #E87820;
+}
