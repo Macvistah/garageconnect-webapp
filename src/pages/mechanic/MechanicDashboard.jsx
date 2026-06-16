@@ -32,7 +32,6 @@ export default function MechanicDashboard() {
   // Data states
   const [mechanic, setMechanic] = useState(null);
   const [myJobs, setMyJobs] = useState([]);
-  const [pendingJobs, setPendingJobs] = useState([]);
   const [completedJobs, setCompletedJobs] = useState([]);
   const [availableJobs, setAvailableJobs] = useState([]);
   const [partsRequests, setPartsRequests] = useState([]);
@@ -46,13 +45,6 @@ export default function MechanicDashboard() {
   const mechanicId = localStorage.getItem('mechanic_id') || localStorage.getItem('user_id');
   const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 
-  useEffect(() => {
-    fetchAllData();
-    // Refresh every 30 seconds
-    const interval = setInterval(fetchAllData, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
   const fetchAllData = async () => {
     setLoading(true);
     try {
@@ -63,7 +55,6 @@ export default function MechanicDashboard() {
       // Fetch my assigned jobs
       const myJobsRes = await api.get('/mechanics/my-jobs');
       setMyJobs(myJobsRes.data);
-      setPendingJobs(myJobsRes.data.filter(job => job.status === 'pending' || job.status === 'accepted'));
       setCompletedJobs(myJobsRes.data.filter(job => job.status === 'completed'));
       
       // Fetch available jobs from garage
@@ -84,6 +75,24 @@ export default function MechanicDashboard() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    let mounted = true;
+    // call fetchAllData asynchronously to avoid synchronous setState in effect
+    (async () => {
+      if (!mounted) return;
+      await fetchAllData();
+    })();
+
+    // Refresh every 30 seconds
+    const interval = setInterval(() => {
+      if (mounted) fetchAllData();
+    }, 30000);
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
+  }, []);
 
   const updateJobStatus = async (jobId, status, data = {}) => {
     try {

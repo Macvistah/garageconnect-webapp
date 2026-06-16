@@ -6,6 +6,7 @@ import GarageDashboard from './pages/garage/GarageDashboard';
 import CustomerDashboard from './pages/customer/CustomerDashboard';
 import MechanicDashboard from './pages/mechanic/MechanicDashboard';
 import './styles/globals.css';
+import SupplierDashboard from './pages/supplier/SupplierDashboard';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/garage/dashboard"   element={<GarageDashboard />} />
         <Route path="/customer/dashboard" element={<CustomerDashboard />} />
         <Route path="/mechanic/dashboard" element={<MechanicDashboard />} />
+        <Route path="/supplier/dashboard"  element={<SupplierDashboard />} />
       </Routes>
     </BrowserRouter>
   );
