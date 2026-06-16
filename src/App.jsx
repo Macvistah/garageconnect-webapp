@@ -5,8 +5,10 @@ import Register from './pages/public/Register';
 import GarageDashboard from './pages/garage/GarageDashboard';
 import CustomerDashboard from './pages/customer/CustomerDashboard';
 import MechanicDashboard from './pages/mechanic/MechanicDashboard';
-import './styles/globals.css';
 import SupplierDashboard from './pages/supplier/SupplierDashboard';
+import FinanceDashboard from './pages/finance/FinanceDashboard';
+import './styles/globals.css';
+
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
         <Route path="/customer/dashboard" element={<CustomerDashboard />} />
         <Route path="/mechanic/dashboard" element={<MechanicDashboard />} />
         <Route path="/supplier/dashboard"  element={<SupplierDashboard />} />
+        <Route path="/finance/dashboard"  element={<FinanceDashboard />} />
+        
       </Routes>
     </BrowserRouter>
   );

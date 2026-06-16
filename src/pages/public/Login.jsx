@@ -38,6 +38,7 @@ export default function Login() {
       car_owner:    '/customer/dashboard',
       mechanic:     '/mechanic/dashboard',
       supplier:     '/supplier/dashboard',
+      finance:      '/finance/dashboard',
       admin:        '/admin/dashboard',
     };
     nav(routes[userRole] || '/');
@@ -56,6 +57,7 @@ export default function Login() {
     { key: 'car_owner',    label: 'Car owner'    },
     { key: 'mechanic',     label: 'Mechanic'     },
     { key: 'supplier',     label: 'Supplier'     },
+    { key: 'finance',      label: 'Finance'      },
     { key: 'admin',        label: 'Admin'        },
   ];
 

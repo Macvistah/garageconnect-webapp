@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/SupplierDashboard.css';
+import './styles/SupplierDashboard.css';
+
+
 
 const NAV = [
   { section: 'Overview' },

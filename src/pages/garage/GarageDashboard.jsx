@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
-import '../../styles/GarageDashboard.css';
+import './styles/GarageDashboard.css';
 
 const NAV = [
   { icon: '▦',  label: 'Dashboard',        id: 'dashboard' },
@@ -46,11 +46,6 @@ export default function GarageDashboard() {
   const name = localStorage.getItem('name') || 'Garage Owner';
   const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 
-  useEffect(() => {
-// role check disabled in dev mode
-    fetchAllData();
-  }, []);
-
   const fetchAllData = async () => {
     setLoading(true);
     try {
@@ -72,6 +67,11 @@ export default function GarageDashboard() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+// role check disabled in dev mode
+    fetchAllData();
+  }, []);
 
   const updateStatus = async (requestId, status, note = '') => {
     try {

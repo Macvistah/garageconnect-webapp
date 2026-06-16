@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
-import '../../styles/MechanicDashboard.css';
+import './styles/MechanicDashboard.css'
 
 const NAV = [
   { icon: '▦',  label: 'Overview',        id: 'overview'   },

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import AddVehicleModal from '../../components/AddVehicleModal';
+import AddVehicleModal from './components/AddVehicleModal';
 import { Link, useNavigate } from 'react-router-dom';
-import '../../styles/CustomerDashboard.css';
+import './styles/CustomerDashboard.css';
 
 const NAV = [
   { icon: '▦',  label: 'Overview',       id: 'overview'  },

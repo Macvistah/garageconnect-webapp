@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { CAR_BRANDS } from '../data/carData';
+import { CAR_BRANDS } from '../../../data/carData';
 
 const YEARS = Array.from({ length: 30 }, (_, i) => 2025 - i);
 const COLORS = [
